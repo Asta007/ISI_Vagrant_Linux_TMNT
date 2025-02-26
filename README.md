@@ -6,8 +6,7 @@ Ce projet Vagrant configure une machine virtuelle Ubuntu 22.04 avec un serveur w
 
 1. **Cloner ce dépôt** :  
    ```sh
-   git clone <URL_DU_DEPOT>
-   cd <NOM_DU_PROJET>
+   git clone https://github.com/Asta007/ISI_Vagrant_Linux_TMNT.git
    ```
 
 2. **Démarrer la machine virtuelle** :  

@@ -3,8 +3,12 @@ Vagrant.configure("2") do |config|
   config.vm.define "Linux-TMNT" do |tmnt|
     tmnt.vm.box = "bento/ubuntu-22.04"
     tmnt.vm.box_check_update = false
+    
     tmnt.vm.network "forwarded_port", guest: 3306, host: 3306
     tmnt.vm.network "private_network", ip: "192.168.33.3"
+    
+    tmnt.vm.synced_folder "./web", "/var/www/html"
+
     tmnt.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.cpus = 1
@@ -13,6 +17,12 @@ Vagrant.configure("2") do |config|
     end
 
     tmnt.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get install -y nginx
+      #rm -rf /var/www/html/*
+      #cp -r /vagrant/web/* /var/www/html/
+      systemctl restart nginx
+      
       apt-get update
       apt-get install -y mysql-server
 
